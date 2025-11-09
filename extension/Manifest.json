@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "LinkedIn Scraper",
+  "version": "1.0",
+  "description": "Scrape LinkedIn profiles and send to backend",
+  "icons": {
+    "128": "icons/icon.png"
+  },
+  "permissions": ["tabs", "scripting", "activeTab"],
+  "host_permissions": ["https://www.linkedin.com/*", "http://localhost:3000/*"],
+  "background": { "service_worker": "background.js" },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.linkedin.com/in/*"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+}
